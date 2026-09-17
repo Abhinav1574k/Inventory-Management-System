@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Inventory Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <div>
+        <h1>Inventory Management</h1>
+        <p>Track products, stock and transactions</p>
+    </div>
+
+    <button id="addProductBtn">
+        + Add Product
+    </button>
+
+</header>
+
+
+<main>
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard">
+
+        <div class="stat-card">
+            <span>Total Products</span>
+            <strong id="totalProducts">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Total Stock</span>
+            <strong id="totalStock">0</strong>
+        </div>
+
+        <div class="stat-card warning">
+            <span>Low Stock</span>
+            <strong id="lowStock">0</strong>
+        </div>
+
+    </section>
+
+
+    <!-- ALERT -->
+
+    <div id="alertBox"></div>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h2>Product Catalog</h2>
+                <p>Current inventory levels</p>
+            </div>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search products..."
+            >
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th>SKU</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="productTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRANSACTIONS -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h2>Transaction History</h2>
+                <p>Every stock movement is recorded</p>
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>Product</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Note</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="transactionTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
+
+    <div class="modal-content">
+
+        <button class="close" id="closeProductModal">
+            ×
+        </button>
+
+        <h2 id="productModalTitle">
+            Add Product
+        </h2>
+
+        <form id="productForm">
+
+            <input
+                type="hidden"
+                id="productId"
+            >
+
+            <label>
+                Product Name
+
+                <input
+                    type="text"
+                    id="productName"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                SKU
+
+                <input
+                    type="text"
+                    id="productSku"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Category
+
+                <input
+                    type="text"
+                    id="productCategory"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Price
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Low Stock Threshold
+
+                <input
+                    type="number"
+                    id="productThreshold"
+                    min="0"
+                    required
+                >
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="primary-btn"
+            >
+                Save Product
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TRANSACTION MODAL -->
+
+<div class="modal" id="transactionModal">
+
+    <div class="modal-content">
+
+        <button class="close" id="closeTransactionModal">
+            ×
+        </button>
+
+        <h2>Stock Transaction</h2>
+
+        <p id="transactionProductName"></p>
+
+        <form id="transactionForm">
+
+            <input
+                type="hidden"
+                id="transactionProductId"
+            >
+
+
+            <label>
+                Transaction Type
+
+                <select id="transactionType">
+
+                    <option value="IN">
+                        Stock In
+                    </option>
+
+                    <option value="OUT">
+                        Stock Out
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <label>
+                Quantity
+
+                <input
+                    type="number"
+                    id="transactionQuantity"
+                    min="1"
+                    step="1"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Note
+
+                <textarea
+                    id="transactionNote"
+                    placeholder="Optional note"
+                ></textarea>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="primary-btn"
+            >
+                Record Transaction
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
