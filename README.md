@@ -1,11 +1,7 @@
 # Inventory Management System
-
-Task 25 of the Web Development Internship.
-
 A full-stack inventory management application for managing products, stock levels, stock-in and stock-out transactions, transaction history, and low-stock alerts.
 
 ## Features
-
 - Product catalog
 - Add products
 - Edit products
